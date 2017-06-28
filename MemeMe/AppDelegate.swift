@@ -8,6 +8,9 @@
 
 import UIKit
 
+// MemeMe 1.0
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
