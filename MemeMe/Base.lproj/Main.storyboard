@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -26,8 +25,16 @@
                                 <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="MemeMe" id="tM3-H9-Hdf">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="g73-LM-1Sc"/>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="YPm-Bv-Zq6"/>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="g73-LM-1Sc">
+                                            <connections>
+                                                <action selector="shareButton:" destination="BYZ-38-t0r" id="Gji-1f-fpJ"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="YPm-Bv-Zq6">
+                                            <connections>
+                                                <action selector="cancelButton:" destination="BYZ-38-t0r" id="Wvv-Tg-cud"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -49,45 +56,51 @@
                             </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VC8-Ud-JUZ" userLabel="memeImageView">
                                 <rect key="frame" x="0.0" y="64" width="414" height="628"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HdK-Zk-uiZ" userLabel="bottomTextBox">
-                                <rect key="frame" x="20" y="637" width="374" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3mW-2q-4hU" userLabel="topTextBox">
+                                <rect key="frame" x="0.0" y="86" width="414" height="17"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3mW-2q-4hU" userLabel="topTextBox">
-                                <rect key="frame" x="20" y="86" width="374" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HdK-Zk-uiZ" userLabel="bottomTextBox">
+                                <rect key="frame" x="0.0" y="650" width="414" height="17"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="98b-hT-4xs" firstAttribute="top" secondItem="HdK-Zk-uiZ" secondAttribute="bottom" constant="25" id="0jv-gZ-USv"/>
-                            <constraint firstItem="24h-cE-BHY" firstAttribute="trailing" secondItem="98b-hT-4xs" secondAttribute="trailing" id="AWJ-e9-JpH"/>
-                            <constraint firstItem="HdK-Zk-uiZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Fke-LZ-p68"/>
-                            <constraint firstItem="24h-cE-BHY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="GFr-Q3-rxm"/>
-                            <constraint firstItem="24h-cE-BHY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Jm4-XV-eEF"/>
-                            <constraint firstItem="3mW-2q-4hU" firstAttribute="leading" secondItem="HdK-Zk-uiZ" secondAttribute="leading" id="Prk-NR-TQN"/>
-                            <constraint firstItem="24h-cE-BHY" firstAttribute="leading" secondItem="98b-hT-4xs" secondAttribute="leading" id="XY5-8k-6Kv"/>
-                            <constraint firstItem="VC8-Ud-JUZ" firstAttribute="top" secondItem="24h-cE-BHY" secondAttribute="bottom" id="YOH-sm-n8H"/>
-                            <constraint firstItem="HdK-Zk-uiZ" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="hmq-PL-83j"/>
-                            <constraint firstItem="98b-hT-4xs" firstAttribute="top" secondItem="VC8-Ud-JUZ" secondAttribute="bottom" id="idD-km-VHT"/>
-                            <constraint firstItem="3mW-2q-4hU" firstAttribute="top" secondItem="24h-cE-BHY" secondAttribute="bottom" constant="22" id="jbw-Zm-dfq"/>
-                            <constraint firstItem="24h-cE-BHY" firstAttribute="leading" secondItem="VC8-Ud-JUZ" secondAttribute="leading" id="nLs-bf-hCY"/>
-                            <constraint firstItem="3mW-2q-4hU" firstAttribute="trailing" secondItem="HdK-Zk-uiZ" secondAttribute="trailing" id="nQr-jt-MNm"/>
-                            <constraint firstItem="98b-hT-4xs" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="qmZ-Ln-rNP"/>
-                            <constraint firstItem="24h-cE-BHY" firstAttribute="trailing" secondItem="VC8-Ud-JUZ" secondAttribute="trailing" id="wJf-Vs-llp"/>
-                            <constraint firstAttribute="trailing" secondItem="24h-cE-BHY" secondAttribute="trailing" id="yZS-e9-nzd"/>
+                            <constraint firstItem="VC8-Ud-JUZ" firstAttribute="top" secondItem="24h-cE-BHY" secondAttribute="bottom" id="0Af-3K-QmQ"/>
+                            <constraint firstItem="98b-hT-4xs" firstAttribute="top" secondItem="HdK-Zk-uiZ" secondAttribute="bottom" constant="25" id="4fH-Av-Rzc"/>
+                            <constraint firstItem="VC8-Ud-JUZ" firstAttribute="trailing" secondItem="HdK-Zk-uiZ" secondAttribute="trailing" id="574-On-dLT"/>
+                            <constraint firstItem="24h-cE-BHY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="BWR-4m-aMf"/>
+                            <constraint firstAttribute="trailing" secondItem="24h-cE-BHY" secondAttribute="trailing" id="BnO-Qv-met"/>
+                            <constraint firstItem="HdK-Zk-uiZ" firstAttribute="leading" secondItem="98b-hT-4xs" secondAttribute="leading" id="IXV-Cf-gAL"/>
+                            <constraint firstItem="HdK-Zk-uiZ" firstAttribute="trailing" secondItem="98b-hT-4xs" secondAttribute="trailing" id="ImZ-U4-Zv4"/>
+                            <constraint firstItem="VC8-Ud-JUZ" firstAttribute="leading" secondItem="3mW-2q-4hU" secondAttribute="leading" id="Lgq-Qw-8bh"/>
+                            <constraint firstItem="3mW-2q-4hU" firstAttribute="leading" secondItem="HdK-Zk-uiZ" secondAttribute="leading" id="M23-Vg-aKv"/>
+                            <constraint firstItem="24h-cE-BHY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="NCH-93-PD7"/>
+                            <constraint firstItem="24h-cE-BHY" firstAttribute="leading" secondItem="3mW-2q-4hU" secondAttribute="leading" id="QVP-t4-GNZ"/>
+                            <constraint firstItem="3mW-2q-4hU" firstAttribute="trailing" secondItem="HdK-Zk-uiZ" secondAttribute="trailing" id="Vvm-3o-xZw"/>
+                            <constraint firstItem="98b-hT-4xs" firstAttribute="top" secondItem="VC8-Ud-JUZ" secondAttribute="bottom" id="XaV-5c-QK2"/>
+                            <constraint firstItem="98b-hT-4xs" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="fHH-hf-D8I"/>
+                            <constraint firstItem="3mW-2q-4hU" firstAttribute="top" secondItem="24h-cE-BHY" secondAttribute="bottom" constant="22" id="gPv-GS-Dqn"/>
+                            <constraint firstItem="24h-cE-BHY" firstAttribute="trailing" secondItem="3mW-2q-4hU" secondAttribute="trailing" id="xFF-P6-51q"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="albumPicker" destination="Dit-u8-YX8" id="WAA-YI-fOw"/>
                         <outlet property="bottomTextBox" destination="HdK-Zk-uiZ" id="e00-y9-DyW"/>
+                        <outlet property="bottomToolBar" destination="98b-hT-4xs" id="HyA-QF-LEV"/>
                         <outlet property="cameraPicker" destination="tD2-r3-Neo" id="l0M-0C-j9m"/>
                         <outlet property="memeImageView" destination="VC8-Ud-JUZ" id="ozc-SO-273"/>
+                        <outlet property="navigationBar" destination="24h-cE-BHY" id="hys-HH-4Se"/>
+                        <outlet property="shareButton" destination="g73-LM-1Sc" id="fNH-XT-FrK"/>
                         <outlet property="topTextBox" destination="3mW-2q-4hU" id="iUH-lk-Mx5"/>
                     </connections>
                 </viewController>
