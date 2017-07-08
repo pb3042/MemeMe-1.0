@@ -20,6 +20,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initialize(topTextBox, with: topTextDefaultValue)
+        initialize(bottomTextBox, with: bottomTextDefaultValue)
+        
         self.subscribeToKeyboardNotifications()
         
         memeImageView.contentMode = .scaleAspectFit
@@ -42,7 +45,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             bottomTextBox.text = bottomTextDefaultValue
             bottomTextBox.defaultTextAttributes = memeTextAttributes
             bottomTextBox.delegate = self
-            bottomTextBox.textAlignment = NSTextAlignment.center
         }
     }
     
@@ -51,18 +53,24 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             topTextBox.text = topTextDefaultValue
             topTextBox.defaultTextAttributes = memeTextAttributes
             topTextBox.delegate = self
-            topTextBox.textAlignment = NSTextAlignment.center
         }
     }
     
     @IBAction func albumPicker(_ sender: UIBarButtonItem) {
-        
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
-        imagePicker.isEditing = true
-        present(imagePicker, animated: true, completion: nil)
+        pickImageFromAlbumOrCamera(source: UIImagePickerControllerSourceType.photoLibrary)
         }
+    
+    @IBAction func cameraPicker(_ sender: UIBarButtonItem) {
+        pickImageFromAlbumOrCamera(source: UIImagePickerControllerSourceType.camera)
+    }
+    
+    func pickImageFromAlbumOrCamera (source:UIImagePickerControllerSourceType) {
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        pickerController.sourceType = source
+        present(pickerController, animated: true, completion: nil)
+    }
+    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
@@ -71,14 +79,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             }
     }
     
-    func initialize(textField:UITextField) {
-        textField.isHidden = false
+    func initialize(_ textField:UITextField, with defaultText: String) {
         textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = NSTextAlignment.center
         textField.delegate = self
-        
-        initialize(textField: topTextBox)
-        initialize(textField: bottomTextBox)
-    }
+        textField.text = defaultText
+        }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.text == "TOP" || textField.text == "BOTTOM" {
@@ -86,18 +92,21 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         }
     }
     
+    func toolNavbarVisibility(hide: Bool) {
+        navigationBar.isHidden = hide
+        bottomToolBar.isHidden = hide
+    }
+    
     func generateMemedImage() -> UIImage {
         
-        navigationBar.isHidden = true
-        bottomToolBar.isHidden = true
+        toolNavbarVisibility(hide: true)
         
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame,afterScreenUpdates: true)
         let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-        navigationBar.isHidden = false
-        bottomToolBar.isHidden = false
+        toolNavbarVisibility(hide: false)
         
         return memedImage
         }
@@ -126,15 +135,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         
         self.present(activityViewController, animated: true, completion: nil)
         }
-    
-    @IBAction func cameraPicker(_ sender: UIBarButtonItem) {
-        
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.camera
-        imagePicker.isEditing = true
-        present(imagePicker, animated: true, completion: nil)
-    }
     
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
         memeImageView.image = nil
